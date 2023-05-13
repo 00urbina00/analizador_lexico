@@ -10,7 +10,6 @@
 
 from qlnpte import *
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -260,7 +259,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.frame_menu)
 
-        self.frame_contenedor = QFrame(self.frame_inferior)
+        self.stackedWidget = QStackedWidget(self.frame_inferior)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.pg_editor = QWidget()
+        self.pg_editor.setObjectName(u"pg_editor")
+        self.gridLayout = QGridLayout(self.pg_editor)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.frame_contenedor = QFrame(self.pg_editor)
         self.frame_contenedor.setObjectName(u"frame_contenedor")
         self.frame_contenedor.setFrameShape(QFrame.StyledPanel)
         self.frame_contenedor.setFrameShadow(QFrame.Raised)
@@ -275,7 +280,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.plainTextEdit)
 
 
-        self.horizontalLayout.addWidget(self.frame_contenedor)
+        self.gridLayout.addWidget(self.frame_contenedor, 0, 0, 1, 1)
+
+        self.stackedWidget.addWidget(self.pg_editor)
+        self.pg_errores = QWidget()
+        self.pg_errores.setObjectName(u"pg_errores")
+        self.stackedWidget.addWidget(self.pg_errores)
+        self.pg_analisis = QWidget()
+        self.pg_analisis.setObjectName(u"pg_analisis")
+        self.stackedWidget.addWidget(self.pg_analisis)
+
+        self.horizontalLayout.addWidget(self.stackedWidget)
 
 
         self.verticalLayout.addWidget(self.frame_inferior)
@@ -285,6 +300,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.btn_editor.setDefault(False)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

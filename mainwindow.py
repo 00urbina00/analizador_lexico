@@ -24,8 +24,10 @@ class MainWindow(QMainWindow):
         self.ui.frame_superior.mouseMoveEvent =  self.mover_ventana # Hacer funcion 
         
         # Acceder a las paginas
-        # self.ui.btn_inicio.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_inicio)])
-
+        self.ui.btn_editor.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_editor)])
+        self.ui.btn_errores.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_errores)])
+        self.ui.btn_analizar.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_analisis)])
+        
         # Control de barra de titulos
         self.ui.btn_minimizar.clicked.connect(self.minimizar)
         self.ui.btn_restaurar.clicked.connect(self.normal)
@@ -38,6 +40,7 @@ class MainWindow(QMainWindow):
 
         # Botones
         # -------------------------------------------------------------------------------
+        self.ui.btn_correr.clicked.connect(self.error)
         self.ui.btn_correr.clicked.connect(self.error)
         
         # Ajustar Tablas
