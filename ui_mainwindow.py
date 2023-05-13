@@ -10,6 +10,7 @@
 
 from qlnpte import *
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -51,29 +52,11 @@ class Ui_MainWindow(object):
 "\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"images/lista.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"images/9135949.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_menu.setIcon(icon)
+        self.btn_menu.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_2.addWidget(self.btn_menu)
-
-        self.pushButton = QPushButton(self.frame_superior)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
-"border-radius:7px;\n"
-"background-color: rgb(60, 100, 120);\n"
-"}\n"
-"QPushButton:hover{\n"
-"	border:10px solid rgb(50, 83, 100);\n"
-"	\n"
-"	background-color: rgb(255, 255, 255);\n"
-"\n"
-"}")
-        icon1 = QIcon()
-        icon1.addFile(u"images/5486216.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QSize(65, 50))
-
-        self.horizontalLayout_2.addWidget(self.pushButton)
 
         self.horizontalSpacer = QSpacerItem(656, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -92,9 +75,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 255, 255);\n"
 "\n"
 "}")
-        icon2 = QIcon()
-        icon2.addFile(u"images/3686939.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_minimizar.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u"images/786263.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_minimizar.setIcon(icon1)
         self.btn_minimizar.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_2.addWidget(self.btn_minimizar)
@@ -112,9 +95,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 255, 255);\n"
 "\n"
 "}")
-        icon3 = QIcon()
-        icon3.addFile(u"images/3287392.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_restaurar.setIcon(icon3)
+        icon2 = QIcon()
+        icon2.addFile(u"images/159100.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_restaurar.setIcon(icon2)
         self.btn_restaurar.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_2.addWidget(self.btn_restaurar)
@@ -132,9 +115,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 255, 255);\n"
 "\n"
 "}")
-        icon4 = QIcon()
-        icon4.addFile(u"images/3287396.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_maximizar.setIcon(icon4)
+        icon3 = QIcon()
+        icon3.addFile(u"images/204538.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_maximizar.setIcon(icon3)
         self.btn_maximizar.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_2.addWidget(self.btn_maximizar)
@@ -152,9 +135,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 255, 255);\n"
 "\n"
 "}")
-        icon5 = QIcon()
-        icon5.addFile(u"images/51517.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_cerrar.setIcon(icon5)
+        icon4 = QIcon()
+        icon4.addFile(u"images/1828774.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_cerrar.setIcon(icon4)
         self.btn_cerrar.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_2.addWidget(self.btn_cerrar)
@@ -194,110 +177,68 @@ class Ui_MainWindow(object):
         self.frame_menu.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_menu)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.btn_inicio = QPushButton(self.frame_menu)
-        self.btn_inicio.setObjectName(u"btn_inicio")
-        self.btn_inicio.setMinimumSize(QSize(0, 40))
-        self.btn_inicio.setMaximumSize(QSize(16777215, 40))
-        self.btn_inicio.setLayoutDirection(Qt.LeftToRight)
-        self.btn_inicio.setAutoFillBackground(False)
-        self.btn_inicio.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.btn_inicio.setText(u"Editor")
+        self.btn_editor = QPushButton(self.frame_menu)
+        self.btn_editor.setObjectName(u"btn_editor")
+        self.btn_editor.setMinimumSize(QSize(0, 40))
+        self.btn_editor.setMaximumSize(QSize(16777215, 40))
+        self.btn_editor.setLayoutDirection(Qt.LeftToRight)
+        self.btn_editor.setAutoFillBackground(False)
+        self.btn_editor.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.btn_editor.setText(u"         Editor")
+        icon5 = QIcon()
+        icon5.addFile(u"images/1994335.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_editor.setIcon(icon5)
+        self.btn_editor.setIconSize(QSize(40, 40))
+        self.btn_editor.setCheckable(False)
+        self.btn_editor.setChecked(False)
+        self.btn_editor.setAutoExclusive(False)
+        self.btn_editor.setAutoDefault(False)
+        self.btn_editor.setFlat(False)
+
+        self.verticalLayout_3.addWidget(self.btn_editor)
+
+        self.btn_errores = QPushButton(self.frame_menu)
+        self.btn_errores.setObjectName(u"btn_errores")
+        self.btn_errores.setMinimumSize(QSize(0, 40))
+        self.btn_errores.setMaximumSize(QSize(16777215, 40))
+        self.btn_errores.setStyleSheet(u"color: rgb(255, 255, 255);")
         icon6 = QIcon()
-        icon6.addFile(u"images/845022.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_inicio.setIcon(icon6)
-        self.btn_inicio.setIconSize(QSize(30, 30))
-        self.btn_inicio.setCheckable(False)
-        self.btn_inicio.setChecked(False)
-        self.btn_inicio.setAutoExclusive(False)
-        self.btn_inicio.setAutoDefault(False)
-        self.btn_inicio.setFlat(False)
+        icon6.addFile(u"images/921564.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_errores.setIcon(icon6)
+        self.btn_errores.setIconSize(QSize(35, 35))
+        self.btn_errores.setCheckable(False)
+        self.btn_errores.setChecked(False)
+        self.btn_errores.setAutoExclusive(False)
 
-        self.verticalLayout_3.addWidget(self.btn_inicio)
+        self.verticalLayout_3.addWidget(self.btn_errores)
 
-        self.btn_viajes = QPushButton(self.frame_menu)
-        self.btn_viajes.setObjectName(u"btn_viajes")
-        self.btn_viajes.setMinimumSize(QSize(0, 40))
-        self.btn_viajes.setMaximumSize(QSize(16777215, 40))
-        self.btn_viajes.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.btn_analizar = QPushButton(self.frame_menu)
+        self.btn_analizar.setObjectName(u"btn_analizar")
+        self.btn_analizar.setMinimumSize(QSize(0, 40))
+        self.btn_analizar.setMaximumSize(QSize(16777215, 40))
+        self.btn_analizar.setStyleSheet(u"color: rgb(255, 255, 255);")
         icon7 = QIcon()
-        icon7.addFile(u"images/carro-familiar.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_viajes.setIcon(icon7)
-        self.btn_viajes.setIconSize(QSize(30, 30))
-        self.btn_viajes.setCheckable(False)
-        self.btn_viajes.setChecked(False)
-        self.btn_viajes.setAutoExclusive(False)
+        icon7.addFile(u"images/3159355.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_analizar.setIcon(icon7)
+        self.btn_analizar.setIconSize(QSize(43, 43))
+        self.btn_analizar.setCheckable(False)
+        self.btn_analizar.setAutoExclusive(False)
 
-        self.verticalLayout_3.addWidget(self.btn_viajes)
+        self.verticalLayout_3.addWidget(self.btn_analizar)
 
-        self.btn_historico = QPushButton(self.frame_menu)
-        self.btn_historico.setObjectName(u"btn_historico")
-        self.btn_historico.setMinimumSize(QSize(0, 40))
-        self.btn_historico.setMaximumSize(QSize(16777215, 40))
-        self.btn_historico.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.btn_correr = QPushButton(self.frame_menu)
+        self.btn_correr.setObjectName(u"btn_correr")
+        self.btn_correr.setMinimumSize(QSize(0, 40))
+        self.btn_correr.setMaximumSize(QSize(16777215, 40))
+        self.btn_correr.setStyleSheet(u"color: rgb(255, 255, 255);")
         icon8 = QIcon()
-        icon8.addFile(u"images/1584786.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_historico.setIcon(icon8)
-        self.btn_historico.setIconSize(QSize(30, 30))
-        self.btn_historico.setCheckable(False)
-        self.btn_historico.setAutoExclusive(False)
+        icon8.addFile(u"images/5486216.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_correr.setIcon(icon8)
+        self.btn_correr.setIconSize(QSize(60, 60))
+        self.btn_correr.setCheckable(False)
+        self.btn_correr.setAutoExclusive(False)
 
-        self.verticalLayout_3.addWidget(self.btn_historico)
-
-        self.btn_conductor = QPushButton(self.frame_menu)
-        self.btn_conductor.setObjectName(u"btn_conductor")
-        self.btn_conductor.setMinimumSize(QSize(0, 40))
-        self.btn_conductor.setMaximumSize(QSize(16777215, 40))
-        self.btn_conductor.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon9 = QIcon()
-        icon9.addFile(u"images/conductor (1).png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_conductor.setIcon(icon9)
-        self.btn_conductor.setIconSize(QSize(30, 30))
-        self.btn_conductor.setCheckable(False)
-        self.btn_conductor.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_conductor)
-
-        self.btn_pagos = QPushButton(self.frame_menu)
-        self.btn_pagos.setObjectName(u"btn_pagos")
-        self.btn_pagos.setMinimumSize(QSize(0, 40))
-        self.btn_pagos.setMaximumSize(QSize(16777215, 40))
-        self.btn_pagos.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon10 = QIcon()
-        icon10.addFile(u"../../SSPBD/Proyecto/Programa/images/dollar_1.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_pagos.setIcon(icon10)
-        self.btn_pagos.setIconSize(QSize(30, 30))
-        self.btn_pagos.setCheckable(False)
-        self.btn_pagos.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_pagos)
-
-        self.btn_factura = QPushButton(self.frame_menu)
-        self.btn_factura.setObjectName(u"btn_factura")
-        self.btn_factura.setMinimumSize(QSize(0, 40))
-        self.btn_factura.setMaximumSize(QSize(16777215, 40))
-        self.btn_factura.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon11 = QIcon()
-        icon11.addFile(u"images/679769 (1).png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_factura.setIcon(icon11)
-        self.btn_factura.setIconSize(QSize(30, 30))
-        self.btn_factura.setCheckable(False)
-        self.btn_factura.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_factura)
-
-        self.btn_ajustes = QPushButton(self.frame_menu)
-        self.btn_ajustes.setObjectName(u"btn_ajustes")
-        self.btn_ajustes.setMinimumSize(QSize(0, 40))
-        self.btn_ajustes.setMaximumSize(QSize(16777215, 40))
-        self.btn_ajustes.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon12 = QIcon()
-        icon12.addFile(u"images/1077198.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_ajustes.setIcon(icon12)
-        self.btn_ajustes.setIconSize(QSize(30, 30))
-        self.btn_ajustes.setCheckable(False)
-        self.btn_ajustes.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_ajustes)
+        self.verticalLayout_3.addWidget(self.btn_correr)
 
         self.verticalSpacer = QSpacerItem(20, 263, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -343,7 +284,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.btn_inicio.setDefault(False)
+        self.btn_editor.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -352,17 +293,13 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.btn_menu.setText(QCoreApplication.translate("MainWindow", u"   MENU", None))
-        self.pushButton.setText("")
         self.btn_minimizar.setText("")
         self.btn_restaurar.setText("")
         self.btn_maximizar.setText("")
         self.btn_cerrar.setText("")
-        self.btn_viajes.setText(QCoreApplication.translate("MainWindow", u"   Viaje", None))
-        self.btn_historico.setText(QCoreApplication.translate("MainWindow", u"  Historico", None))
-        self.btn_conductor.setText(QCoreApplication.translate("MainWindow", u"  Conductor", None))
-        self.btn_pagos.setText(QCoreApplication.translate("MainWindow", u"  Pagos", None))
-        self.btn_factura.setText(QCoreApplication.translate("MainWindow", u"  Factura", None))
-        self.btn_ajustes.setText(QCoreApplication.translate("MainWindow", u"  Ajustes", None))
+        self.btn_errores.setText(QCoreApplication.translate("MainWindow", u"        Errores", None))
+        self.btn_analizar.setText(QCoreApplication.translate("MainWindow", u"        Analizar", None))
+        self.btn_correr.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Universidad de Guadalajara", None))
     # retranslateUi
 

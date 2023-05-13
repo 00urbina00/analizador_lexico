@@ -104,35 +104,12 @@ QPushButton:hover{
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>images/lista.png</normaloff>images/lista.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-border-radius:7px;
-background-color: rgb(60, 100, 120);
-}
-QPushButton:hover{
-	border:10px solid rgb(50, 83, 100);
-	
-	background-color: rgb(255, 255, 255);
-
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>images/5486216.png</normaloff>images/5486216.png</iconset>
+           <normaloff>images/9135949.png</normaloff>images/9135949.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>65</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
          </property>
         </widget>
@@ -175,7 +152,7 @@ QPushButton:hover{
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>images/3686939.png</normaloff>images/3686939.png</iconset>
+           <normaloff>images/786263.png</normaloff>images/786263.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -210,7 +187,7 @@ QPushButton:hover{
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>images/3287392.png</normaloff>images/3287392.png</iconset>
+           <normaloff>images/159100.png</normaloff>images/159100.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -245,7 +222,7 @@ QPushButton:hover{
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>images/3287396.png</normaloff>images/3287396.png</iconset>
+           <normaloff>images/204538.png</normaloff>images/204538.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -280,7 +257,7 @@ QPushButton:hover{
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>images/51517.png</normaloff>images/51517.png</iconset>
+           <normaloff>images/1828774.png</normaloff>images/1828774.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -357,7 +334,7 @@ font: 75 12pt &quot;Arial Narrow&quot;;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QPushButton" name="btn_inicio">
+           <widget class="QPushButton" name="btn_editor">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -380,16 +357,16 @@ font: 75 12pt &quot;Arial Narrow&quot;;
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string notr="true">Editor</string>
+             <string notr="true">         Editor</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>images/845022.png</normaloff>images/845022.png</iconset>
+              <normaloff>images/1994335.png</normaloff>images/1994335.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>30</width>
-              <height>30</height>
+              <width>40</width>
+              <height>40</height>
              </size>
             </property>
             <property name="checkable">
@@ -413,7 +390,7 @@ font: 75 12pt &quot;Arial Narrow&quot;;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btn_viajes">
+           <widget class="QPushButton" name="btn_errores">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -430,16 +407,16 @@ font: 75 12pt &quot;Arial Narrow&quot;;
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>   Viaje</string>
+             <string>        Errores</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>images/carro-familiar.png</normaloff>images/carro-familiar.png</iconset>
+              <normaloff>images/921564.png</normaloff>images/921564.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>30</width>
-              <height>30</height>
+              <width>35</width>
+              <height>35</height>
              </size>
             </property>
             <property name="checkable">
@@ -454,7 +431,7 @@ font: 75 12pt &quot;Arial Narrow&quot;;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btn_historico">
+           <widget class="QPushButton" name="btn_analizar">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -471,16 +448,16 @@ font: 75 12pt &quot;Arial Narrow&quot;;
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>  Historico</string>
+             <string>        Analizar</string>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>images/1584786.png</normaloff>images/1584786.png</iconset>
+              <normaloff>images/3159355.png</normaloff>images/3159355.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>30</width>
-              <height>30</height>
+              <width>43</width>
+              <height>43</height>
              </size>
             </property>
             <property name="checkable">
@@ -492,7 +469,7 @@ font: 75 12pt &quot;Arial Narrow&quot;;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btn_conductor">
+           <widget class="QPushButton" name="btn_correr">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -509,130 +486,16 @@ font: 75 12pt &quot;Arial Narrow&quot;;
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>  Conductor</string>
+             <string/>
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>images/conductor (1).png</normaloff>images/conductor (1).png</iconset>
+              <normaloff>images/5486216.png</normaloff>images/5486216.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_pagos">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>  Pagos</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../../SSPBD/Proyecto/Programa/images/dollar_1.png</normaloff>../../SSPBD/Proyecto/Programa/images/dollar_1.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_factura">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>  Factura</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>images/679769 (1).png</normaloff>images/679769 (1).png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoExclusive">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_ajustes">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>  Ajustes</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>images/1077198.png</normaloff>images/1077198.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
+              <width>60</width>
+              <height>60</height>
              </size>
             </property>
             <property name="checkable">
@@ -705,7 +568,7 @@ font: 75 12pt &quot;Arial Narrow&quot;;
            <number>0</number>
           </property>
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit">
+           <widget class="PlainTextEdit" name="plainTextEdit">
             <property name="styleSheet">
              <string notr="true">font: 9pt &quot;Courier New&quot;;</string>
             </property>
@@ -720,6 +583,13 @@ font: 75 12pt &quot;Arial Narrow&quot;;
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>plaintextedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

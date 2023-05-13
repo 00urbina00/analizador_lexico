@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
 
         # Botones
         # -------------------------------------------------------------------------------
-        self.ui.pushButton.clicked.connect(self.error)
+        self.ui.btn_correr.clicked.connect(self.error)
         
         # Ajustar Tablas
         # self.ui.tabla_viajes.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) 
