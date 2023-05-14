@@ -8,7 +8,7 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from qlnpte import *
+from plaintext import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -273,11 +273,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.plainTextEdit = PlainTextEdit(self.frame_contenedor)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setStyleSheet(u"font: 9pt \"Courier New\";")
+        self.groupBox = QGroupBox(self.frame_contenedor)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setStyleSheet(u"")
+        self.gridLayout_2 = QGridLayout(self.groupBox)
+        self.gridLayout_2.setSpacing(6)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout_2.setContentsMargins(9, 9, 9, 9)
+        self.plainTextEdit_codigo = PlainTextEdit(self.groupBox)
+        self.plainTextEdit_codigo.setObjectName(u"plainTextEdit_codigo")
+        self.plainTextEdit_codigo.setStyleSheet(u"font: 9pt \"Courier New\";\n"
+"background-color: rgb(255, 255, 255);")
 
-        self.verticalLayout_2.addWidget(self.plainTextEdit)
+        self.gridLayout_2.addWidget(self.plainTextEdit_codigo, 0, 0, 1, 1)
+
+
+        self.verticalLayout_2.addWidget(self.groupBox)
 
 
         self.gridLayout.addWidget(self.frame_contenedor, 0, 0, 1, 1)
@@ -285,9 +296,69 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.pg_editor)
         self.pg_errores = QWidget()
         self.pg_errores.setObjectName(u"pg_errores")
+        self.gridLayout_4 = QGridLayout(self.pg_errores)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.frame_contenedor_2 = QFrame(self.pg_errores)
+        self.frame_contenedor_2.setObjectName(u"frame_contenedor_2")
+        self.frame_contenedor_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_contenedor_2.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.frame_contenedor_2)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.groupBox_2 = QGroupBox(self.frame_contenedor_2)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setStyleSheet(u"")
+        self.gridLayout_3 = QGridLayout(self.groupBox_2)
+        self.gridLayout_3.setSpacing(6)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_3.setContentsMargins(9, 9, 9, 9)
+        self.plainTextEdit_errores = PlainTextEdit(self.groupBox_2)
+        self.plainTextEdit_errores.setObjectName(u"plainTextEdit_errores")
+        self.plainTextEdit_errores.setStyleSheet(u"font: 9pt \"Courier New\";\n"
+"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout_3.addWidget(self.plainTextEdit_errores, 1, 0, 1, 1)
+
+
+        self.verticalLayout_4.addWidget(self.groupBox_2)
+
+
+        self.gridLayout_4.addWidget(self.frame_contenedor_2, 0, 0, 1, 1)
+
         self.stackedWidget.addWidget(self.pg_errores)
         self.pg_analisis = QWidget()
         self.pg_analisis.setObjectName(u"pg_analisis")
+        self.gridLayout_6 = QGridLayout(self.pg_analisis)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.frame_contenedor_3 = QFrame(self.pg_analisis)
+        self.frame_contenedor_3.setObjectName(u"frame_contenedor_3")
+        self.frame_contenedor_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_contenedor_3.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_5 = QVBoxLayout(self.frame_contenedor_3)
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.groupBox_3 = QGroupBox(self.frame_contenedor_3)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setStyleSheet(u"")
+        self.gridLayout_5 = QGridLayout(self.groupBox_3)
+        self.gridLayout_5.setSpacing(6)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.gridLayout_5.setContentsMargins(9, 9, 9, 9)
+        self.plainTextEdit_analisis = PlainTextEdit(self.groupBox_3)
+        self.plainTextEdit_analisis.setObjectName(u"plainTextEdit_analisis")
+        self.plainTextEdit_analisis.setStyleSheet(u"font: 9pt \"Courier New\";\n"
+"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout_5.addWidget(self.plainTextEdit_analisis, 0, 0, 1, 1)
+
+
+        self.verticalLayout_5.addWidget(self.groupBox_3)
+
+
+        self.gridLayout_6.addWidget(self.frame_contenedor_3, 0, 0, 1, 1)
+
         self.stackedWidget.addWidget(self.pg_analisis)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -317,5 +388,8 @@ class Ui_MainWindow(object):
         self.btn_analizar.setText(QCoreApplication.translate("MainWindow", u"        Analizar", None))
         self.btn_correr.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Universidad de Guadalajara", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Codigo", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Errores", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Componentes", None))
     # retranslateUi
 

@@ -95,4 +95,4 @@ class MainWindow(QMainWindow):
             
     def error(self):
         n = [1, 3, 4, 7]
-        self.ui.plainTextEdit.highlight_error_lines(n)
+        self.ui.plainTextEdit_codigo.highlight_error_lines(n)

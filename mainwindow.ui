@@ -575,10 +575,38 @@ font: 75 12pt &quot;Arial Narrow&quot;;
                <number>0</number>
               </property>
               <item>
-               <widget class="PlainTextEdit" name="plainTextEdit">
+               <widget class="QGroupBox" name="groupBox">
                 <property name="styleSheet">
-                 <string notr="true">font: 9pt &quot;Courier New&quot;;</string>
+                 <string notr="true"/>
                 </property>
+                <property name="title">
+                 <string>Codigo</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_2">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="spacing">
+                  <number>6</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="PlainTextEdit" name="plainTextEdit_codigo">
+                   <property name="styleSheet">
+                    <string notr="true">font: 9pt &quot;Courier New&quot;;
+background-color: rgb(255, 255, 255);</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -586,8 +614,138 @@ font: 75 12pt &quot;Arial Narrow&quot;;
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="pg_errores"/>
-         <widget class="QWidget" name="pg_analisis"/>
+         <widget class="QWidget" name="pg_errores">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QFrame" name="frame_contenedor_2">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QGroupBox" name="groupBox_2">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="title">
+                 <string>Errores</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_3">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="spacing">
+                  <number>6</number>
+                 </property>
+                 <item row="1" column="0">
+                  <widget class="PlainTextEdit" name="plainTextEdit_errores">
+                   <property name="styleSheet">
+                    <string notr="true">font: 9pt &quot;Courier New&quot;;
+background-color: rgb(255, 255, 255);</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pg_analisis">
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QFrame" name="frame_contenedor_3">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QGroupBox" name="groupBox_3">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="title">
+                 <string>Componentes</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_5">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="spacing">
+                  <number>6</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="PlainTextEdit" name="plainTextEdit_analisis">
+                   <property name="styleSheet">
+                    <string notr="true">font: 9pt &quot;Courier New&quot;;
+background-color: rgb(255, 255, 255);</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
