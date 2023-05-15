@@ -146,6 +146,12 @@ class MainWindow(QMainWindow):
                     print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
             elif instruccion_operando in self.tabop:   # La instruccion no está en el primer espacio de instruccion[0]
                 try:
+                    # VALIDAR QUE HAY UNA ETIQUETA ANTES DE LA INSTRUCCION !!!!!
+                    # VALIDAR LAS SUBRUTINAS (BANDERA QUE ABRE EN PROC Y OTRA QUE CIERRA EN ENDP) (MARCAR TODAS LAS LINEAS INTERMEDIAS EN ROJO)
+                    # VALIDAR DATA SEGMENT
+                    # CREAR AUTOMATAS PARA VALIDAR OPERADORES Y TIPOS DE DATOS
+                    # MODIFICAR LAS EXCEPCIONES (HACER ESPECIFICAS) PARA EVITAR OCULTAR OTROS FALLOS
+                    # AGREGAR FUNCIONALIDAD A LAS DEMAS PAGINAS O ELIMINARLAS (ERROES | ANALIZAR)
                     if instruccion_ope[1].upper() in self.tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
                         instruccion = instruccion_ope[1]
                         operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
