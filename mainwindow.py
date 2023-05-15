@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
          "POP", "POPA", "POPF", "PUSH", "PUSHF", "RCL", "RCR", "REP", "REPE", "REPNE",
          "REPNZ", "REPZ", "RET", "RETF", "ROL", "ROR", "SAHF", "SAL", "SAR", "SBB", "SCASB",
          "SCASW", "SHL", "SHR", "STC", "STD", "STI" "TOSB", "STOSW", "SUB", "TEST", "XCHG",
-         "XLATB", "XOR", ".ORG", "ORG")
+         "XLATB", "XOR", ".ORG", "ORG", "PROC", "ENDP", "END", "NAME", "INCLUDE")
         
         # Eventos ----------------------------------------------------------------
         
@@ -114,15 +114,17 @@ class MainWindow(QMainWindow):
     
     def procesar_codigo(self, lista_lineas):            # Procesador de texto (descompone cada linea en componentes como: Instruccion, operadores, comentarios)
         instruccion = ""
+        instruccion_operando = ""
         operandos = [""]
         lista_erroes = []
+        linea_comentario = [""]
         contador_linea = 0
-        bandera = False
         for linea in lista_lineas:
             contador_linea += 1
             if linea:
                 try:
-                    componentes = linea.split(';')      # Separar la línea por '; '
+                    linea_vacia = linea.strip()
+                    componentes = linea.split(';')                # Separar la línea por '; '
                     instruccion_ope = componentes[0].split()      # Separar la primera parte de componentes por espacios
                     instruccion = instruccion_ope[0]              # Obtener la instruccion de la linea
                     try:
@@ -134,15 +136,17 @@ class MainWindow(QMainWindow):
                         comentario = ""
                 except:
                     instruccion = ""
-            if instruccion.upper() in self.tabop:
-                if (instruccion.upper() != '.ORG') and (instruccion.upper() != 'ORG'):
-                    if linea != "":
-                        print('La linea "{}" es una linea valida!'.format(linea))
-                        print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
-                        bandera = True
-            elif operandos[0].upper() in self.tabop:
                 try:
-                    if instruccion_ope[1].upper() in self.tabop:
+                    instruccion_operando = operandos[0].upper()
+                except:
+                    pass
+            if instruccion.upper() in self.tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
+                if linea != "":
+                    print('La linea "{}" es una linea valida!'.format(linea))
+                    print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
+            elif instruccion_operando in self.tabop:   # La instruccion no está en el primer espacio de instruccion[0]
+                try:
+                    if instruccion_ope[1].upper() in self.tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
                         instruccion = instruccion_ope[1]
                         operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
                         operandos = operandos[0].split(",")
@@ -151,10 +155,11 @@ class MainWindow(QMainWindow):
                         print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
                 except:
                     pass
-            elif bandera:
-                if linea:
-                    lista_erroes.append(contador_linea)
-                    print(linea, " Sin instruccion")
+            elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
+                linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
+                if ";" not in linea_comentario[0]:  # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
+                    print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
+                    lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
         return lista_erroes        
         
     
