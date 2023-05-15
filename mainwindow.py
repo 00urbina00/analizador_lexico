@@ -122,6 +122,7 @@ class MainWindow(QMainWindow):
         contador_linea = 0
         for linea in lista_lineas:
             contador_linea += 1
+            instruccion_ope = [""]
             if linea:
                 try:
                     linea_vacia = linea.strip()
@@ -170,13 +171,14 @@ class MainWindow(QMainWindow):
                                 bandera_proc += 1
                                 print("Bandera ", bandera_proc)
                         elif instruccion_ope[1].upper() == "ENDP":  # Termina un procedimiento
-                            if bandera_proc != 1:
-                                print('No ha iniciado ningun procedimiento previo.')
-                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
-                            else:
+                            if bandera_proc == 1:
                                 print('La linea "{}" es una linea valida!'.format(linea))
                                 bandera_proc -= 1
                                 print("Bandera ", bandera_proc)
+                            else:
+                                print(instruccion_ope[1].upper())
+                                print('No ha iniciado ningun procedimiento previo.')
+                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
                         else:
                             # La linea puede tener una instruccion pero no hay una etiqueta válida
                             print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
