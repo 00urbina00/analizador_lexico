@@ -113,6 +113,7 @@ class MainWindow(QMainWindow):
         return lista_lineas                             # Regresa una lista de lineas
     
     def procesar_codigo(self, lista_lineas):            # Procesador de texto (descompone cada linea en componentes como: Instruccion, operadores, comentarios)
+        bandera_proc = 0
         instruccion = ""
         instruccion_operando = ""
         operandos = [""]
@@ -152,23 +153,40 @@ class MainWindow(QMainWindow):
                     # CREAR AUTOMATAS PARA VALIDAR OPERADORES Y TIPOS DE DATOS
                     # MODIFICAR LAS EXCEPCIONES (HACER ESPECIFICAS) PARA EVITAR OCULTAR OTROS FALLOS
                     # AGREGAR FUNCIONALIDAD A LAS DEMAS PAGINAS O ELIMINARLAS (ERROES | ANALIZAR)
-                    if (instruccion_ope[1].upper() in self.tabop) and (":" in instruccion_ope[0]): # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
-                        instruccion = instruccion_ope[1]
-                        operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
-                        operandos = operandos[0].split(",")
-                        comentario = componentes[1].strip() if len(componentes) > 1 else ""
-                        # print('La linea "{}" es una linea valida!'.format(linea))
-                        # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
-                    else:
-                        # La linea puede tener una instruccion pero no hay una etiqueta válida
-                        print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
-                        lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                    if (instruccion_ope[1].upper() in self.tabop):  # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
+                        if (":" in instruccion_ope[0]):             # Hay una etiqueta al inicio de la linea
+                            instruccion = instruccion_ope[1]
+                            operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
+                            operandos = operandos[0].split(",")
+                            comentario = componentes[1].strip() if len(componentes) > 1 else ""
+                            # print('La linea "{}" es una linea valida!'.format(linea))
+                            # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
+                        elif instruccion_ope[1].upper() == "PROC":  # Inicia un procedimiento 
+                            if bandera_proc != 0:
+                                print('No se ha cerrado el procedimiento anterior.')
+                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                            else:
+                                print('La linea "{}" es una linea valida!'.format(linea))
+                                bandera_proc += 1
+                                print("Bandera ", bandera_proc)
+                        elif instruccion_ope[1].upper() == "ENDP":  # Termina un procedimiento
+                            if bandera_proc != 1:
+                                print('No ha iniciado ningun procedimiento previo.')
+                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                            else:
+                                print('La linea "{}" es una linea valida!'.format(linea))
+                                bandera_proc -= 1
+                                print("Bandera ", bandera_proc)
+                        else:
+                            # La linea puede tener una instruccion pero no hay una etiqueta válida
+                            print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
+                            lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
                 except:
                     pass
             elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
                 linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
                 if ";" not in linea_comentario[0]:  # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
-                    # print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
+                    print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
                     lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
         return lista_erroes        
         
