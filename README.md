@@ -1,5 +1,5 @@
 # analizador_lexico
-Implementación de autómatas finitos para un analizador léxico (Primer paso para un compilador) capaz de reconocer lenguaje ensamblador (de emu8086).
+Implementación de autómatas finitos para un analizador léxico (Primer paso para un compilador) capaz de reconocer lenguaje ensamblador (para el procesador Intel 8086).
 #
 Realizado en Python 3.7.9 (probado en 3.10.11) utilizando PySide2 y QtDesigner.
 #
