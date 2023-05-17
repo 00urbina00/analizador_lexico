@@ -113,16 +113,18 @@ class MainWindow(QMainWindow):
         return lista_lineas                             # Regresa una lista de lineas
     
     def procesar_codigo(self, lista_lineas):            # Procesador de texto (descompone cada linea en componentes como: Instruccion, operadores, comentarios)
-        bandera_proc = 0
-        instruccion = ""
-        instruccion_operando = ""
-        operandos = [""]
-        lista_erroes = []
-        linea_comentario = [""]
+        bandera_proc = 0                                # Bandera determina cuando inicia una subrutina y cuando termina
         contador_linea = 0
+        lista_erroes = []                               # Guarda el numero de lineas donde se detectó un error
+        pila_llamadas_procedimientos = ['#']            # Guarda cada inicio de una subrutina (# es pila vacía)
         for linea in lista_lineas:
-            contador_linea += 1
-            instruccion_ope = [""]
+            contador_linea += 1                         # Cuenta cuantas lineas se han leído
+            instruccion_ope = [""]                      # Separa todos los componentes de la linea sin tomar comentarios
+           
+            instruccion = ""                            # Cuando la instruccion se encuentra en el primer indice [0]
+            instruccion_operando = ""                   # Cuando la instruccion se encuentra en el segundo indice [1]
+            operandos = [""]                            # Arroja los operandos de una instrucción ("ax, bx" en "mov ax, bx")
+            linea_comentario = [""]                     # Guarda una linea completa si solo contiene un comentario
             if linea:
                 try:
                     linea_vacia = linea.strip()
@@ -149,7 +151,7 @@ class MainWindow(QMainWindow):
                     # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
             elif instruccion_operando in self.tabop:   # La instruccion no está en el primer espacio de instruccion[0]
                 try:
-                    # VALIDAR LAS SUBRUTINAS (BANDERA QUE ABRE EN PROC Y OTRA QUE CIERRA EN ENDP) (MARCAR TODAS LAS LINEAS INTERMEDIAS EN ROJO)
+                    # VALIDAR LAS SUBRUTINAS (BANDERA QUE ABRE EN PROC Y OTRA QUE CIERRA EN ENDP) -
                     # VALIDAR DATA SEGMENT
                     # CREAR AUTOMATAS PARA VALIDAR OPERADORES Y TIPOS DE DATOS
                     # MODIFICAR LAS EXCEPCIONES (HACER ESPECIFICAS) PARA EVITAR OCULTAR OTROS FALLOS
@@ -162,23 +164,36 @@ class MainWindow(QMainWindow):
                             comentario = componentes[1].strip() if len(componentes) > 1 else ""
                             # print('La linea "{}" es una linea valida!'.format(linea))
                             # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
-                        elif instruccion_ope[1].upper() == "PROC":  # Inicia un procedimiento 
-                            if bandera_proc != 0:
+                        elif instruccion_ope[1].upper() == "PROC":
+                            # Inicia un procedimiento ------------------------------------------------------------------------------------------------------------
+                            if pila_llamadas_procedimientos[-1] == '#':     # Si la pila esta vacía, se puede apilar
+                                print('La linea "{}" es una linea valida!'.format(linea))
+                                pila_llamadas_procedimientos.append(contador_linea)
+                                pila_llamadas_procedimientos.append(instruccion_ope[0])
+                                bandera_proc += 1
+                            else:
+                                print("Nombre del procedimiento actual: ", instruccion_ope[0])
                                 print('No se ha cerrado el procedimiento anterior.')
                                 lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
-                            else:
-                                print('La linea "{}" es una linea valida!'.format(linea))
-                                bandera_proc += 1
-                                print("Bandera ", bandera_proc)
-                        elif instruccion_ope[1].upper() == "ENDP":  # Termina un procedimiento
-                            if bandera_proc == 1:
-                                print('La linea "{}" es una linea valida!'.format(linea))
+                        elif instruccion_ope[1].upper() == "ENDP":  
+                            # Termina un procedimiento -----------------------------------------------------------------------------------------------------------
+                            if pila_llamadas_procedimientos[-1] != '#':     # Si la pila no esta vacía, se puede desapilar
+                                sub_rutina = pila_llamadas_procedimientos.pop()
+                                linea_proc = pila_llamadas_procedimientos.pop()
+                            # if (bandera_proc == 1) and (sub_rutina == instruccion_ope[0]):
+                            if (sub_rutina == instruccion_ope[0]):
+                                print('La linea "{}" es una linea valida!'.format(linea))            
                                 bandera_proc -= 1
-                                print("Bandera ", bandera_proc)
-                            else:
-                                print(instruccion_ope[1].upper())
+                            # ====================================================================================================================================
+                            elif linea_proc != 0:
+                                print("Nombre del procedimiento actual: ", sub_rutina)
                                 print('No ha iniciado ningun procedimiento previo.')
+                                lista_erroes.append(linea_proc)
                                 lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                                pila_llamadas_procedimientos = ['#']    # Se reinicializa la pila
+                            sub_rutina = ""
+                            linea_proc = 0
+                            
                         else:
                             # La linea puede tener una instruccion pero no hay una etiqueta válida
                             print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
@@ -188,7 +203,7 @@ class MainWindow(QMainWindow):
             elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
                 linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
                 if ";" not in linea_comentario[0]:  # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
-                    print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
+                    # print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
                     lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
         return lista_erroes        
         
