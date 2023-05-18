@@ -150,7 +150,7 @@ for cadena in cadenas:
       
 estados_ope = {'q0', 'q1', 'q2', 'q3'}
 estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q0', 'q2', 'q4', 'q5'}
+estados_aceptacion_ope = {'q2', 'q3', 'q6'}
 
 # Definir las transiciones del autómata de operadores
 # El formato en que se reciben operadores es en lista: 
@@ -161,19 +161,17 @@ La instruccion es: "pop", el o los operadores son: "['ax']", y el comentario es:
 """
 transiciones_ope = [
     # Transiciones para valores vacíos o espacios
-    ('q0', r'^$', 'q0'),  # Cadena vacía
-    # Transiciones para registros
-    ('q0', r'[a-dA-D]', 'q1'),  # Registros (letras de 'a' a 'd' seguidas de 'x', 'h' o 'l')
-    ('q1', r'[xhlXHL]', 'q2'),
-    # Transiciones para números en hexadecimal
-    ('q0', r'[0-9a-fA-F]', 'q3'),  # Números hexadecimales (dígitos hexadecimales seguidos de 'h')
-    ('q3', r'[xX]', 'q3'),
-    ('q3', r'[0-9a-fA-F]', 'q3'),
-    ('q3', r'[a-zA-Z]', 'q3'), # AMBIGUEDAD
-    ('q3', r'[hH]', 'q4'),
-    ('q3', r'\]', 'q5'),
-    # Transiciones para direcciones de memoria entre corchetes
-    ('q0', r'\[', 'q3'),  # Direcciones de memoria entre corchetes [hexadecimal]
+    ('q0', r'^$',               'q0'), # Cadena vacía
+    ('q0', r'[a-zA-Z]',         'q1'), # Registros (letras de 'a' a 'd' seguidas de 'x', 'h' o 'l')
+    ('q0', r'[1-9]',            'q5'), # Reconoce numeros enteros
+    ('q0', r'0',                'q4'), #Reconoce numeros posibles hexadecimales
+    ('q1', r'[^xhlXHL]',        'q3'), #Reconoce varibles de registro
+    ('q1', r'[xhlXHL]',         'q2'), #Reconoce varibales
+    ('q2', r'[a-zA-Z_0-9]',     'q3'), #Parte reconocedor de variables
+    ('q3', r'[0-9a-zA-Z\t]',    'q3'), #Reconocedor de varibales, por si termina con espacios indeterminados
+    ('q4', r'[xXa-fa-F]',       'q5'), #Si pasa por aqui son hexa
+    ('q5', r'[a-fA-F0-9]',      'q6'), #Pueden seguir siendo normales si no se pasa por q4 o pueden comenzar a ser hexa
+    ('q6', r'[0-9a-fA-FhH]',    'q6')
 ]
 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)

@@ -68,7 +68,7 @@ transiciones = {
 automata = Automata_Var(estados, estado_inicial, estados_aceptacion, transiciones)
 
 cadena = input("Ingrese una cadena: ")
-if automata.acepta_cadena_caracter(cadena):
+if automata.acepta_cadena_caracter(cadena.lower()):
     print("La cadena es válida para el autómata.")
 else:
     print("La cadena no es válida para el autómata.")
