@@ -148,9 +148,9 @@ for cadena in cadenas:
 
 
       
-estados_ope = {'q0', 'q1', 'q2', 'q3'}
+estados_ope = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
 estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q2', 'q3', 'q6'}
+estados_aceptacion_ope = {'q2', 'q3', 'q6', 'q8'}
 
 # Definir las transiciones del autómata de operadores
 # El formato en que se reciben operadores es en lista: 
@@ -163,15 +163,19 @@ transiciones_ope = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',               'q0'), # Cadena vacía
     ('q0', r'[a-zA-Z]',         'q1'), # Registros (letras de 'a' a 'd' seguidas de 'x', 'h' o 'l')
-    ('q0', r'[1-9]',            'q5'), # Reconoce numeros enteros
+    ('q0', r'[2-9]',            'q5'), # Reconoce numeros enteros
     ('q0', r'0',                'q4'), #Reconoce numeros posibles hexadecimales
+    ('q0', r'1',                'q7'),
     ('q1', r'[^xhlXHL]',        'q3'), #Reconoce varibles de registro
     ('q1', r'[xhlXHL]',         'q2'), #Reconoce varibales
     ('q2', r'[a-zA-Z_0-9]',     'q3'), #Parte reconocedor de variables
     ('q3', r'[0-9a-zA-Z\t]',    'q3'), #Reconocedor de varibales, por si termina con espacios indeterminados
     ('q4', r'[xXa-fa-F]',       'q5'), #Si pasa por aqui son hexa
+    ('q4', r'[10]',             'q7'), #Parte binaria
     ('q5', r'[a-fA-F0-9]',      'q6'), #Pueden seguir siendo normales si no se pasa por q4 o pueden comenzar a ser hexa
-    ('q6', r'[0-9a-fA-FhH]',    'q6')
+    ('q6', r'[0-9a-fA-FhH]',    'q6'),
+    ('q7', r'[10]',             'q7'),
+    ('q7', r'[bB]',             'q8')
 ]
 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
