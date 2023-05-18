@@ -170,7 +170,7 @@ transiciones_ope = [
     ('q1', r'[xhlXHL]',         'q2'), #Reconoce varibales
     ('q2', r'[a-zA-Z_0-9]',     'q3'), #Parte reconocedor de variables
     ('q3', r'[0-9a-zA-Z\t]',    'q3'), #Reconocedor de varibales, por si termina con espacios indeterminados
-    ('q4', r'[xXa-fa-F]',       'q5'), #Si pasa por aqui son hexa
+    ('q4', r'[xXa-fA-F]',       'q5'), #Si pasa por aqui son hexa
     ('q4', r'[10]',             'q7'), #Parte binaria
     ('q5', r'[a-fA-F0-9]',      'q6'), #Pueden seguir siendo normales si no se pasa por q4 o pueden comenzar a ser hexa
     ('q6', r'[0-9a-fA-FhH]',    'q6'),
@@ -180,7 +180,7 @@ transiciones_ope = [
 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
 
-bloque_texto_ope = ['ah', '', '21h', '[error]', 'c_sumas', '[bcd8421]', '[0x]']
+bloque_texto_ope = ['0x']
 
 cadenas_ope = bloque_texto_ope
 for cadena in cadenas_ope:
