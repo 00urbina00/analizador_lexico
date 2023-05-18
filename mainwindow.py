@@ -145,8 +145,9 @@ class MainWindow(QMainWindow):
                     pass
             if instruccion.upper() in self.tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
                 if linea != "":
-                    print('La linea "{}" es una linea valida!'.format(linea))
-                    # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
+                    pass
+                    # print('La linea "{}" es una linea valida!'.format(linea))
+                    print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
             elif instruccion_operando in self.tabop:   # La instruccion no está en el primer espacio de instruccion[0]
                 try:
                     # VALIDAR DATA SEGMENT
@@ -159,12 +160,12 @@ class MainWindow(QMainWindow):
                             operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
                             operandos = operandos[0].split(",")
                             comentario = componentes[1].strip() if len(componentes) > 1 else ""
-                            print('La linea "{}" es una linea valida!'.format(linea))
+                            # print('La linea "{}" es una linea valida!'.format(linea))
                             # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
                         elif instruccion_ope[1].upper() == "PROC":
                             # Inicia un procedimiento ------------------------------------------------------------------------------------------------------------
                             if pila_llamadas_procedimientos[-1] == '#':     # Si la pila esta vacía, se puede apilar
-                                print('La linea "{}" es una linea valida!'.format(linea))
+                                # print('La linea "{}" es una linea valida!'.format(linea))
                                 pila_llamadas_procedimientos.append(contador_linea)
                                 pila_llamadas_procedimientos.append(instruccion_ope[0])
                             else:
@@ -176,7 +177,8 @@ class MainWindow(QMainWindow):
                                 sub_rutina = pila_llamadas_procedimientos.pop()
                                 linea_proc = pila_llamadas_procedimientos.pop()
                             if (sub_rutina == instruccion_ope[0]):
-                                print('La linea "{}" es una linea valida!'.format(linea))            
+                                pass
+                                # print('La linea "{}" es una linea valida!'.format(linea))            
                             # ====================================================================================================================================
                             elif linea_proc != 0:
                                 print('Error en el procedimiento: ', instruccion_ope[0])
@@ -187,14 +189,14 @@ class MainWindow(QMainWindow):
                             linea_proc = 0
                         else:
                             # La linea puede tener una instruccion pero no hay una etiqueta válida
-                            print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
+                            # print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
                             lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
                 except:
                     pass
             elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
                 linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
                 if ";" not in linea_comentario[0]:  # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
-                    print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
+                    # print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
                     lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
         return lista_erroes        
         
