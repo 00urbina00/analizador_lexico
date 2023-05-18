@@ -24,13 +24,18 @@ class Automata():
         return estado_actual in self.estados_aceptacion
 
 
-estados = {'q0', 'q1', 'q2'}
+estados = {'q0', 'q1', 'q2', 'q3','q4'}
 estado_inicial = 'q0'
-estados_aceptacion = {'q0'}
+estados_aceptacion = {'q1','q2','q3','q4'}
 transiciones = {
-    ('q0', r'[0-9]', 'q1'),
-    ('q1', r'[a-z]', 'q2'),
-    ('q2', r'[A-Z]', 'q0')
+    ('q0', '0', 'q1'),
+    ('q0', r'[1-9]', 'q4'),
+    ('q1', 'x', 'q2'),
+    ('q1', r'[0-9]', 'q4'),
+    ('q2', r'[0-9a-f]', 'q2'),
+    ('q2', 'h', 'q3'),
+    ('q4', r'[0-9a-f]', 'q4'),
+    ('q4', 'h','q3')
 }
 
 automata = Automata(estados, estado_inicial, estados_aceptacion, transiciones)

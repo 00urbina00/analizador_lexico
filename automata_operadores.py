@@ -39,7 +39,7 @@ class Automata():
         return estado_actual in self.estados_aceptacion
 
 # Ejemplo de uso
-estados = {'q0', 'q1', 'q2', 'q3'}
+estados = {'q0', 'q1', 'q2', 'q3','q4'}
 estado_inicial = 'q0'
 estados_aceptacion = {'q1','q2','q3','q4'}
 transiciones = {
