@@ -150,7 +150,7 @@ for cadena in cadenas:
       
 estados_ope = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
 estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q2', 'q3', 'q6', 'q8'}
+estados_aceptacion_ope = {'q0','q2', 'q3', 'q6', 'q8', 'q5'}
 
 # Definir las transiciones del autómata de operadores
 # El formato en que se reciben operadores es en lista: 
@@ -180,11 +180,11 @@ transiciones_ope = [
 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
 
-bloque_texto_ope = ['0x']
+bloque_texto_ope = ['0x', '', '0xAh', '[]']
 
 cadenas_ope = bloque_texto_ope
 for cadena in cadenas_ope:
-    print("La cadena es: ", cadena)
+    print("La cadena es: ", cadena, "| Termina")
     if automata_ope.acepta_cadena(cadena):
         print("-------------------------------------")
         print("La cadena es válida para el autómata.")
