@@ -100,7 +100,7 @@ transiciones_ds = [
 # Parametros de automata_num
 estados_num = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
 estado_inicial_num = 'q0'
-estados_aceptacion_num = {'q0', 'q1', 'q2', 'q4', 'q6', 'q7', 'q8'}
+estados_aceptacion_num = {'q0', 'q1', 'q2', 'q4', 'q6', 'q7', 'q8', 'q5'}
 transiciones_num = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',               'q0'), # Cadena vacía
