@@ -200,7 +200,7 @@ for cadena in cadenas_num:
 
 estados_ope = {'q0', 'q1', 'q2', 'q3'}
 estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q2', 'q3'}
+estados_aceptacion_ope = {'q0','q2', 'q3'}
 
 transiciones_ope = [
     # Transiciones para valores vacíos o espacios
