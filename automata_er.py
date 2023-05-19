@@ -108,6 +108,7 @@ transiciones_num = [
     ('q0', r'1',                'q5'), # Entra a los numeros binarios
     ('q0', r'[2-9]',            'q6'), # Reconoce numeros enteros
     ('q5', r'[01]',             'q5'), # Ingresos de numeros binarios
+    ('q5', r'[hH]',             'q8'),
     ('q5', r'[bB]',             'q8'), # Sale de numeros binarios a estado final
     ('q5', r'[a-fA-F]',         'q3'), # Sale de binarios para ir a hexadecimales
     ('q5', r'[2-9]',            'q6'), # Sale de binarios para ir a enteros
