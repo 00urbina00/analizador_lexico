@@ -184,7 +184,7 @@ transiciones_num = [
 
 automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
 
-bloque_texto_num = ['0x1','100ah', '20', '20b']
+bloque_texto_num = ['0x1','100aah', '20', '20b']
 
 cadenas_num = bloque_texto_num
 for cadena_n in cadenas_num:
