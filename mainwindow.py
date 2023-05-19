@@ -237,5 +237,6 @@ class MainWindow(QMainWindow):
                 # Es una línea de definición
                 else:
                     pass
+                # Hola mundo 
 
         return lista_erroes
