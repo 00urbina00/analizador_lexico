@@ -115,11 +115,11 @@ transiciones_num = [
     ('q6', r'[0-9]',            'q6'), # Recibe enteros
     ('q6', r'[a-fA-F]',         'q3'), # Sale de enteros a recibir hexadecimal
     ('q3', r'[0-9a-fA-F]',      'q3'), # Se mantiene recibiendo numeros hexadecimales
-    ('q3', r'hH',               'q7'), # Salida para aceptacion de hexadecimales
+    ('q3', r'[hH]',               'q7'), # Salida para aceptacion de hexadecimales
     ('q6', r'[hH]',             'q7'),
     ('q4', r'[2-9]',            'q6'), # Recibe numeros decimales
     ('q4', r'[01]',             'q5'), # Recibe numeros binarios
-    ('q4', r'xX',               'q1'), # Recibe hexa comenzando con 0x
+    ('q4', r'[xX]',               'q1'), # Recibe hexa comenzando con 0x
     ('q4', r'[0-9]',            'q2'), # Recibe enteros comenzando 0
     ('q4', r'[A-Fa-f]',         'q3'), # Recibe hexadecimales 0 terminando con h
     ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
