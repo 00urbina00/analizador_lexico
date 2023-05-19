@@ -144,7 +144,7 @@ class MainWindow(QMainWindow):
     # Procesador de texto (descompone cada linea en componentes como: Instruccion, operadores, comentarios)
     def procesar_codigo(self, lista_lineas):
         contador_linea = 0
-        lista_erroes = []  # Guarda el numero de lineas donde se detectó un error
+        lista_errores = []  # Guarda el numero de lineas donde se detectó un error
         pila_llamadas_procedimientos = ['#']  # Guarda cada inicio de una subrutina (# es pila vacía)
         for linea in lista_lineas:
             linea_vacia = ""
@@ -199,8 +199,8 @@ class MainWindow(QMainWindow):
                         
                         if False in resultado:
                             # print("Los resultados del automata num: ", resultados_num)
-                            lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
-                            # print("Se rechazan los operadores: ", operandos, " en la instruccion: ", instruccion)
+                            lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                            print("Se rechazan los operadores: ", operandos, " en la instruccion: ", instruccion)
                         else:
                             pass
                             # print("Se aceptan los operadores: ", operandos, " en la instruccion: ", instruccion)
@@ -227,8 +227,8 @@ class MainWindow(QMainWindow):
                                 # print("Los resultados juntos son: ", resultado)
                                 if False in resultado:
                                     # print("Los resultados del automata: ", resultado)
-                                    lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
-                                    # print("Se rechazan los operadores: ", operandos, " en la instruccion: ", instruccion)
+                                    lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                                    print("Se rechazan los operadores: ", operandos, " en la instruccion: ", instruccion)
                                 else:
                                     pass
                                     # print("Se aceptan los operadores: ", operandos, " en la instruccion: ", instruccion)
@@ -245,7 +245,7 @@ class MainWindow(QMainWindow):
                             pila_llamadas_procedimientos.append(instruccion_ope[0])
                         else:
                             print('Error en el procedimiento: ', instruccion_ope[0])
-                            lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                            lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
                     elif instruccion_ope[1].upper() == "ENDP":
                         # Termina un procedimiento -------------------------------------------------------------
                         if pila_llamadas_procedimientos[-1] != '#':  # Si la pila no esta vacía, se puede desapilar
@@ -257,26 +257,27 @@ class MainWindow(QMainWindow):
                         # =============================================================================================
                         elif linea_proc != 0:
                             print('Error en el procedimiento: ', instruccion_ope[0])
-                            lista_erroes.append(linea_proc)
-                            lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                            lista_errores.append(linea_proc)
+                            lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
                             pila_llamadas_procedimientos = ['#']  # Se reinicializa la pila
                     else:
                         # La línea puede tener una instruction, pero no hay una etiqueta válida
                         print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
-                        lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                        lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
             elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
                 linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
                 if (";" not in linea_comentario[0]) and ("db" not in linea and "dw" not in linea and "DB" not in linea and
                                                          "DW" not in linea):
                     # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
                     print(linea, " Sin instruccion")  # INSTRUCCION INVALIDA (RECHAZADA)
-                    lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                    lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
                 # Es una línea de definición
                 else:
                     if not self.automata_ds.acepta_cadena(linea):
                         if ";" not in linea_comentario[0]:
-                            lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                            lista_errores.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                            print("Se rechazo la definicion: ", linea)
                     else:
                         pass
                         # print('La linea "{}" es una linea valida!'.format(linea))  # VALIDA
-        return lista_erroes
+        return lista_errores
