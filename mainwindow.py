@@ -2,7 +2,7 @@ from ui_mainwindow import *
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtCore import QPropertyAnimation
 
-from automata_er import Automata
+from automata_er import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -11,7 +11,12 @@ class MainWindow(QMainWindow):
         self.clickPosition = None
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.automata_ds = Automata(estados_ds, estado_inicial_ds, estados_aceptacion_ds, transiciones_ds)
+
+        self.automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
+        self.automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
+        self.automata_ds = Automata(estados_ds, estado_inicial_ds, estados_aceptacion_ds, transiciones_ds)
+        
+        
         self.dict_tabop = {"AAA": 0, "AAD": 0, "AAM": 0, "AAS": 0, "ADC": 2, "ADD": 2, "AND": 2, "CALL": 1, "CBW": 0,
                            "CLC": 0, "CLD": 0, "CLI": 0, "CMC": 0, "CMP": 2, "CMPSB": 0, "CMPSW": 0, "CWD": 0, "DAA": 0,
                            "DAS": 0, "DEC": 1, "DIV": 1, "HLT": 0, "IDIV": 1, "IMUL": 1, "IN": 2, "INC": 1, "INT": 1,

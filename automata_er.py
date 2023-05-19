@@ -28,7 +28,9 @@ class Automata():
                 print("El simbolo actual es: ", caracter, "| terminó")
                 return False
         return estado_actual in self.estados_aceptacion
-
+    
+# ===========================================================================================================
+# Parametros de automata_ds
 estados_ds = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14'}
 estado_inicial_ds = 'q0'
 estados_aceptacion_ds = {'q10', 'q7','q4', 'q5', 'q15', 'q0'}
@@ -93,72 +95,11 @@ transiciones_ds = [
     # Hay un caso de dup("0") en el cual no se reconocen las comillas dentro
     # Hay un caso en que si se usa {variable_a} {operador} offset {variable_b} no se reconocerá
 ]
-
-# automata = Automata(estados_ds, estado_inicial_ds, estados_aceptacion_ds, transiciones_ds)
-
-bloque_texto = """        linea        Db      1 dup (0)
-n_arch       db      80              dup (0)
-han_n_a      dW      0
-han_n_a_escr dw      0
-salir        db      0, 0, 0, 0
-t_linea      db      , 0,  dup(0)
-error        dw      ?  
-
-prueba       dw      0x0Ah
-
-         
-NvaLine      db      0dh,0ah 
-msg1         db      "Dame el nombre del archivo de texto a abrir. usa el formato 8.3", 0               
-error01      db      "Funcion No Valida",0
-error02      db      "Archivo No Encontrado",0
-error03      db      "Ruta No Valida",0
-error04      db      "Handle No Disponible",0
-error05      db      "Acceso Denegado",0
-error06      db      "Handle no valido",0
-error07      db      "Excede el numero de caracteres",0
- 
-enter        db      "", 0dh,0aH        
-espacio      db      " "
-contador     dw      0  
-bcd8421      db      5   dup (?)
-bcdA         db      5   dup ("0")
-name_new     db      80  dup (0)
-tam_bcdA     db      name_new - offset bcdA
-tam_blan     db      contador - offset espacio
-tam_enter    db      espacio - offset enter
-msg2         db      "La ruta tiene un maximo de 80 caracteres",0
-tam_msg2     db      tam_msg2 - offset msg2
-msg3         db      "Dame el nombre del archivo de salida. usa el formato 8.3", 0
-nombre       db      "",0dH,0aH
-msg_fin      db      "Archivo creado con exito!", 0
-"""
-"""
-cadenas = bloque_texto.split("\n")
-for cadena in cadenas:
-    print("La cadena es: ", cadena)
-    if automata.acepta_cadena(cadena):
-        print("-------------------------------------")
-        print("La cadena es válida para el autómata.")
-        print("-------------------------------------")
-    else:
-        print("-------------------------------------")
-        print("La cadena no es válida para el autómata.")
-        print("-------------------------------------")
-"""
-
-
-      
+# ---------------------------------------------------------------------------------------------------------------
+# Parametros de automata_num
 estados_num = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
 estado_inicial_num = 'q0'
 estados_aceptacion_num = {'q0', 'q1', 'q2', 'q4', 'q6', 'q7', 'q8'}
-
-# Definir las transiciones del autómata de operadores
-# El formato en que se reciben operadores es en lista: 
-"""
-La instruccion es: "mov", el o los operadores son: "['[error]', 'ax']", y el comentario es: ""
-La instruccion es: "pop", el o los operadores son: "['ax']", y el comentario es: ""
-
-"""
 transiciones_num = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',               'q0'), # Cadena vacía
@@ -181,27 +122,11 @@ transiciones_num = [
     ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
     ('q2', r'[0-9a-fA-F]',      'q2'), # Hexadecimales del tipo 0x
 ]
-
-automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
-
-bloque_texto_num = ['0x1','100aah', '20', '20b']
-
-cadenas_num = bloque_texto_num
-for cadena_n in cadenas_num:
-    print("La cadena es: ", cadena_n)
-    if automata_num.acepta_cadena(cadena_n):
-        print("-------------------------------------")
-        print("La cadena es válida para el autómata.")
-        print("-------------------------------------")
-    else:
-        print("-------------------------------------")
-        print("La cadena no es válida para el autómata.")
-        print("-------------------------------------")
-
+# ---------------------------------------------------------------------------------------------------------------
+# Parametros de automata_ope
 estados_ope = {'q0', 'q1', 'q2', 'q3'}
 estado_inicial_ope = 'q0'
 estados_aceptacion_ope = {'q0','q2', 'q3'}
-
 transiciones_ope = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',                               'q0'), # Cadena vacía
@@ -212,18 +137,3 @@ transiciones_ope = [
     ('q2', r'[a-zA-Z0-9]',                      'q3'), # Ingreso de variable
     ('q3', r'[a-zA-Z0-9]',                      'q3') # Aceptacion de variables
 ]
-
-automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
-bloque_texto_ope = ['0x1','100ah', '20', '20b']
-
-cadenas_ope = bloque_texto_ope
-for cadena_o in cadenas_ope:
-    print("La cadena es: ", cadena_o)
-    if automata_num.acepta_cadena(cadena_o):
-        print("-------------------------------------")
-        print("La cadena es válida para el autómata.")
-        print("-------------------------------------")
-    else:
-        print("-------------------------------------")
-        print("La cadena no es válida para el autómata.")
-        print("-------------------------------------")
