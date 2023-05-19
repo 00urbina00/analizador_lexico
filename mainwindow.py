@@ -63,9 +63,6 @@ class MainWindow(QMainWindow):
 
         # Acceder a las paginas
         self.ui.btn_editor.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_editor)])
-        self.ui.btn_errores.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_errores)])
-        self.ui.btn_analizar.clicked.connect(lambda: [self.ui.stackedWidget.setCurrentWidget(self.ui.pg_analisis)])
-
         # Control de barra de titulos
         self.ui.btn_minimizar.clicked.connect(self.minimizar)
         self.ui.btn_restaurar.clicked.connect(self.normal)

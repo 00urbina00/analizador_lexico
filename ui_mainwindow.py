@@ -196,43 +196,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.btn_editor)
 
-        self.btn_errores = QPushButton(self.frame_menu)
-        self.btn_errores.setObjectName(u"btn_errores")
-        self.btn_errores.setMinimumSize(QSize(0, 40))
-        self.btn_errores.setMaximumSize(QSize(16777215, 40))
-        self.btn_errores.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon6 = QIcon()
-        icon6.addFile(u"images/921564.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_errores.setIcon(icon6)
-        self.btn_errores.setIconSize(QSize(35, 35))
-        self.btn_errores.setCheckable(False)
-        self.btn_errores.setChecked(False)
-        self.btn_errores.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_errores)
-
-        self.btn_analizar = QPushButton(self.frame_menu)
-        self.btn_analizar.setObjectName(u"btn_analizar")
-        self.btn_analizar.setMinimumSize(QSize(0, 40))
-        self.btn_analizar.setMaximumSize(QSize(16777215, 40))
-        self.btn_analizar.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon7 = QIcon()
-        icon7.addFile(u"images/3159355.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_analizar.setIcon(icon7)
-        self.btn_analizar.setIconSize(QSize(43, 43))
-        self.btn_analizar.setCheckable(False)
-        self.btn_analizar.setAutoExclusive(False)
-
-        self.verticalLayout_3.addWidget(self.btn_analizar)
-
         self.btn_correr = QPushButton(self.frame_menu)
         self.btn_correr.setObjectName(u"btn_correr")
         self.btn_correr.setMinimumSize(QSize(0, 40))
         self.btn_correr.setMaximumSize(QSize(16777215, 40))
         self.btn_correr.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon8 = QIcon()
-        icon8.addFile(u"images/5486216.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_correr.setIcon(icon8)
+        icon6 = QIcon()
+        icon6.addFile(u"images/5486216.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_correr.setIcon(icon6)
         self.btn_correr.setIconSize(QSize(60, 60))
         self.btn_correr.setCheckable(False)
         self.btn_correr.setAutoExclusive(False)
@@ -294,72 +265,6 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.frame_contenedor, 0, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.pg_editor)
-        self.pg_errores = QWidget()
-        self.pg_errores.setObjectName(u"pg_errores")
-        self.gridLayout_4 = QGridLayout(self.pg_errores)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.frame_contenedor_2 = QFrame(self.pg_errores)
-        self.frame_contenedor_2.setObjectName(u"frame_contenedor_2")
-        self.frame_contenedor_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_contenedor_2.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_4 = QVBoxLayout(self.frame_contenedor_2)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.groupBox_2 = QGroupBox(self.frame_contenedor_2)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setStyleSheet(u"")
-        self.gridLayout_3 = QGridLayout(self.groupBox_2)
-        self.gridLayout_3.setSpacing(6)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.gridLayout_3.setContentsMargins(9, 9, 9, 9)
-        self.plainTextEdit_errores = PlainTextEdit(self.groupBox_2)
-        self.plainTextEdit_errores.setObjectName(u"plainTextEdit_errores")
-        self.plainTextEdit_errores.setStyleSheet(u"font: 9pt \"Courier New\";\n"
-"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout_3.addWidget(self.plainTextEdit_errores, 1, 0, 1, 1)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_2)
-
-
-        self.gridLayout_4.addWidget(self.frame_contenedor_2, 0, 0, 1, 1)
-
-        self.stackedWidget.addWidget(self.pg_errores)
-        self.pg_analisis = QWidget()
-        self.pg_analisis.setObjectName(u"pg_analisis")
-        self.gridLayout_6 = QGridLayout(self.pg_analisis)
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.frame_contenedor_3 = QFrame(self.pg_analisis)
-        self.frame_contenedor_3.setObjectName(u"frame_contenedor_3")
-        self.frame_contenedor_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_contenedor_3.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_5 = QVBoxLayout(self.frame_contenedor_3)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.groupBox_3 = QGroupBox(self.frame_contenedor_3)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setStyleSheet(u"")
-        self.gridLayout_5 = QGridLayout(self.groupBox_3)
-        self.gridLayout_5.setSpacing(6)
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.gridLayout_5.setContentsMargins(9, 9, 9, 9)
-        self.plainTextEdit_analisis = PlainTextEdit(self.groupBox_3)
-        self.plainTextEdit_analisis.setObjectName(u"plainTextEdit_analisis")
-        self.plainTextEdit_analisis.setStyleSheet(u"font: 9pt \"Courier New\";\n"
-"background-color: rgb(255, 255, 255);")
-
-        self.gridLayout_5.addWidget(self.plainTextEdit_analisis, 0, 0, 1, 1)
-
-
-        self.verticalLayout_5.addWidget(self.groupBox_3)
-
-
-        self.gridLayout_6.addWidget(self.frame_contenedor_3, 0, 0, 1, 1)
-
-        self.stackedWidget.addWidget(self.pg_analisis)
 
         self.horizontalLayout.addWidget(self.stackedWidget)
 
@@ -384,12 +289,8 @@ class Ui_MainWindow(object):
         self.btn_restaurar.setText("")
         self.btn_maximizar.setText("")
         self.btn_cerrar.setText("")
-        self.btn_errores.setText(QCoreApplication.translate("MainWindow", u"        Errores", None))
-        self.btn_analizar.setText(QCoreApplication.translate("MainWindow", u"        Analizar", None))
-        self.btn_correr.setText("")
+        self.btn_correr.setText(QCoreApplication.translate("MainWindow", u"   Analizar", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Universidad de Guadalajara", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Codigo", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Errores", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Componentes", None))
     # retranslateUi
 
