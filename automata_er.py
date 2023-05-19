@@ -187,9 +187,9 @@ automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num,
 bloque_texto_num = ['0x1','100ah', '20', '20b']
 
 cadenas_num = bloque_texto_num
-for cadena in cadenas_num:
-    print("La cadena es: ", cadena)
-    if automata_num.acepta_cadena(cadena):
+for cadena_n in cadenas_num:
+    print("La cadena es: ", cadena_n)
+    if automata_num.acepta_cadena(cadena_n):
         print("-------------------------------------")
         print("La cadena es válida para el autómata.")
         print("-------------------------------------")
