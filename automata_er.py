@@ -12,20 +12,21 @@ class Automata():
             self.transiciones[expresion_regular].append((estado, siguiente_estado))
     
     def acepta_cadena(self, cadena):
+        # print("Se revisa: ", cadena)
         estado_actual = self.estado_inicial
         for caracter in cadena:
             transicion_encontrada = False
             for expresion_regular, transiciones in self.transiciones.items():
                 for estado, siguiente_estado in transiciones:
                     if estado == estado_actual and re.match(expresion_regular, caracter):
-                        print("Estado actual: " + estado_actual + ", el siguiente estado es: " + siguiente_estado + ", Se ha procesado el caracter: " + caracter)
+                        # print("Estado actual: " + estado_actual + ", el siguiente estado es: " + siguiente_estado + ", Se ha procesado el caracter: " + caracter)
                         estado_actual = siguiente_estado
                         transicion_encontrada = True
                         break
                 if transicion_encontrada:
                     break
             if not transicion_encontrada:
-                print("El simbolo actual es: ", caracter, "| terminó")
+                # print("Se rechazó: ", caracter, "| terminó")
                 return False
         return estado_actual in self.estados_aceptacion
     
@@ -114,13 +115,14 @@ transiciones_num = [
     ('q6', r'[a-fA-F]',         'q3'), # Sale de enteros a recibir hexadecimal
     ('q3', r'[0-9a-fA-F]',      'q3'), # Se mantiene recibiendo numeros hexadecimales
     ('q3', r'hH',               'q7'), # Salida para aceptacion de hexadecimales
+    ('q4',r'h',                 'q7'),
     ('q4', r'[2-9]',            'q6'), # Recibe numeros decimales
     ('q4', r'[01]',             'q5'), # Recibe numeros binarios
     ('q4', r'xX',               'q1'), # Recibe hexa comenzando con 0x
     ('q4', r'[0-9]',            'q2'), # Recibe enteros comenzando 0
     ('q4', r'[A-Fa-f]',         'q3'), # Recibe hexadecimales 0 terminando con h
     ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
-    ('q2', r'[0-9a-fA-F]',      'q2'), # Hexadecimales del tipo 0x
+    ('q2', r'[0-9a-fA-F]',      'q2') # Hexadecimales del tipo 0x
 ]
 # ---------------------------------------------------------------------------------------------------------------
 # Parametros de automata_ope
