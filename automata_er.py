@@ -122,7 +122,8 @@ transiciones_num = [
     ('q4', r'[0-9]',            'q2'), # Recibe enteros comenzando 0
     ('q4', r'[A-Fa-f]',         'q3'), # Recibe hexadecimales 0 terminando con h
     ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
-    ('q2', r'[0-9a-fA-F]',      'q2') # Hexadecimales del tipo 0x
+    ('q2', r'[0-9a-fA-F]',      'q2'), # Hexadecimales del tipo 0x
+    ('q8', r'[hH]',             'q8')
 ]
 
 
