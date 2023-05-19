@@ -140,7 +140,7 @@ transiciones_ope = [
     ('q0', r'[e-zE-Z_]',                        'q3'), # Entra variable
     ('q1', r'[xhlXHL]',                         'q2'), # Fin de registros
     ('q1', r'[a-gA-Gi-kI-Km-wM-Wy-zY-Z0-9]',    'q3'), # Ingreso de variable
-    ('q2', r'[a-zA-Z0-9]',                      'q3'), # Ingreso de variable
+    ('q2', r'[a-zA-Z0-9_]',                      'q3'), # Ingreso de variable
     ('q3', r'[a-zA-Z0-9]',                      'q3') # Aceptacion de variables
 ]
 
