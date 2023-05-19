@@ -134,7 +134,7 @@ transiciones_num = [
 # Parametros de automata_ope
 estados_ope = {'q0', 'q1', 'q2', 'q3'}
 estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q0','q2', 'q3'}
+estados_aceptacion_ope = {'q0','q2', 'q3', 'q1'}
 transiciones_ope = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',                               'q0'), # Cadena vacía
