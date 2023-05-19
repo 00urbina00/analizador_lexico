@@ -209,19 +209,26 @@ class MainWindow(QMainWindow):
             elif instruccion_operando in self.dict_tabop:
                 # Se encontró una instruccion válida en el segundo espacio (después de otro elemento)
                 if instruccion_ope[1].upper() in self.dict_tabop:  # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
-                    if ":" in instruccion_ope[0]:  # Hay una etiqueta al inicio de la linea
+                    if ":" in instruccion_ope[0] and len(operandos) == self.dict_tabop[instruccion.upper()]:  # Hay una etiqueta al inicio de la linea
                         instruccion = instruccion_ope[1]
                         operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
                         operandos = operandos[0].split(",")
                         comentario = componentes[1].strip() if len(componentes) > 1 else ""
                         
-                        resultados = [self.automata_ope.acepta_cadena(cadena) for cadena in operandos]
-                        
-                        
-                        
-                        # print('La línea "{}" es una linea valida!'.format(linea))
-                        # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.
-                        # - format(instruccion, operandos, comentario))
+                        operandos_sin_corchetes = [operando.strip('[]') for operando in operandos]
+                        resultados_ope = [self.automata_ope.acepta_cadena(cadena) for cadena in operandos_sin_corchetes]
+                        if False in resultados_ope:
+                            resultados_num = [self.automata_num.acepta_cadena(cadena) for cadena in operandos_sin_corchetes]
+                            resultado = [x or y for x, y in zip(resultados_ope, resultados_num)]
+                            if False in resultado:
+                                print("Los resultados del automata: ", resultado)
+                                lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
+                                print("Se rechazan los operadores: ", operandos, " en la instruccion: ", instruccion)
+                            else:
+                                print("Se aceptan los operadores: ", operandos, " en la instruccion: ", instruccion)
+                        else:
+                            print("Se aceptan los operadores: ", operandos, " en la instruccion: ", instruccion)
+                            
                     elif instruccion_ope[1].upper() == "PROC":
                         # Inicia un procedimiento ------------------------------------------------------
                         if pila_llamadas_procedimientos[-1] == '#':  # Si la pila esta vacía, se puede apilar
@@ -262,7 +269,6 @@ class MainWindow(QMainWindow):
                 else:
                     if not self.automata_ds.acepta_cadena(linea):
                         if ";" not in linea_comentario[0]:
-                            # print(linea, " Sin instruccion")  # INSTRUCCION INVALIDA (RECHAZADA)
                             lista_erroes.append(contador_linea)  # Se agrega la linea actual a la lista de errores
                     else:
                         pass
