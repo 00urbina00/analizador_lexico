@@ -8,6 +8,19 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
+        self.dict_tabop = {"AAA": 0, "AAD": 0, "AAM": 0, "AAS": 0, "ADC": 2, "ADD": 2, "AND": 2, "CALL": 1, "CBW": 0,"CLC": 0, 
+                "CLD": 0, "CLI": 0, "CMC": 0, "CMP": 2, "CMPSB": 0, "CMPSW": 0, "CWD": 0,"DAA": 0, "DAS": 0,"DEC": 1,
+                "DIV":1,"HLT":0,"IDIV":1,"IMUL":1,"IN":2,"INC":1,"INT":1,"INTO":0,"IRET":0,"JA":1,"JAE":1,"JB":1,
+                "JBE":1,"JC":1,"JCXZ":1,"JE":1,"JG":1,"JGE":1,"JL":1,"JLE":1,"JMP":1,"JNA":1,"JNAE":1,"JNB":1,"JNBE":1,
+                "JNC":1,"JNE":1,"JNG":1,"JNGE" :1 ,"JNL" :1 ,"JNLE" :1 ,"JNO" :1 ,"JNP" :1 ,"JNS" :1 , "JNZ" :1 ,"JO" :1 ,
+                "JP" :1 ,"JPE" :1 ,"JPO" :1 ,"JS" :1 ,"JZ" :1 ,"LAHF" :0 ,"LDS" :2 ,"LEA" :2 ,"LES" :2 ,"LODSB" :0 ,
+                "LODSW" :0 ,"LOOP" :1 ,"LOOPE" :1 ,"LOOPNE" :1 ,"LOOPNZ" :1 ,"LOOPZ" :1 ,"MOV" :2 ,"MOVSB" :0 ,"MOVSW" :0 ,
+                "MUL" : 2 , "NEG" : 2 , "NOP" : 0 , "NOT" : 2 , "OR" : 2 , "OUT" : 2 , "POP" : 2 , "POPA" : 0 , "POPF" : 0 , 
+                "PUSH" : 2 ,"PUSHF" : 0 , "RCL" : 2 , "RCR" : 2 , "REP":0,"REPE":0,"REPNE":0,"REPNZ":0,"REPZ":0,"RET":0, 
+                "RETF":0,"ROL":0,"ROR":0,"SAHF":0,"SAL":0,"SAR":0,"SBB":0,"SCASB":0,"SCASW":0,"SHL":0,"SHR":0,"STC":0, 
+                "STD":0,'STI':0,'TOSB':0, 'STOSW':0, 'SUB':2,'TEST':2,'XCHG':2,'XLATB':0, 'XOR':2,
+                'END':0, 'NAME': 0, 'INCLUDE': 0, 'ORG':0, '.ORG':0, 'PROC':0, 'ENDP':0}
+        
         # Lista  de instrucciones reconocidas
         self.tabop = ("AAA", "AAD", "AAM", "AAS", "ADC", "ADD", "AND", "CALL", "CBW", "CLC",
          "CLD", "CLI", "CMC", "CMP", "CMPSB", "CMPSW", "CWD", "DAA", "DAS",
@@ -119,84 +132,85 @@ class MainWindow(QMainWindow):
         for linea in lista_lineas:
             contador_linea += 1                         # Cuenta cuantas lineas se han leído
             instruccion_ope = [""]                      # Separa todos los componentes de la linea sin tomar comentarios
-           
             instruccion = ""                            # Cuando la instruccion se encuentra en el primer indice [0]
             instruccion_operando = ""                   # Cuando la instruccion se encuentra en el segundo indice [1]
             operandos = [""]                            # Arroja los operandos de una instrucción ("ax, bx" en "mov ax, bx")
             linea_comentario = [""]                     # Guarda una linea completa si solo contiene un comentario
             if linea:
+                linea_vacia = linea.strip()
+                componentes = linea.split(';')                # Separar la línea por '; '
+                instruccion_ope = componentes[0].split()      # Separar la primera parte de componentes por espacios
                 try:
-                    linea_vacia = linea.strip()
-                    componentes = linea.split(';')                # Separar la línea por '; '
-                    instruccion_ope = componentes[0].split()      # Separar la primera parte de componentes por espacios
                     instruccion = instruccion_ope[0]              # Obtener la instruccion de la linea
-                    try:
-                        operandos = instruccion_ope[1:] if len(instruccion_ope) > 1 else []
-                        operandos = operandos[0].split(",")       # Obtener los operandos de la instruccion
-                        comentario = componentes[1].strip() if len(componentes) > 1 else ""
-                    except:
-                        operandos = [""]
-                        comentario = ""
-                except:
-                    instruccion = ""
+                except IndexError:
+                    pass # DEBUG!!!
+                    # print('instruccion_ope no contiene elementos en la posicion [0]')
+                operandos = instruccion_ope[1:] if len(instruccion_ope) > 1 else []
                 try:
-                    instruccion_operando = operandos[0].upper()
-                except:
-                    pass
-            if instruccion.upper() in self.tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
+                    operandos = operandos[0].split(",")       # Obtener los operandos de la instruccion
+                except IndexError:
+                    pass # DEBUG!!!
+                    # print("Operandos no contiene elementos en la posicion [0]")
+                comentario = componentes[1].strip() if len(componentes) > 1 else ""
+                operandos = [""]
+                comentario = ""
+                instruccion_operando = operandos[0].upper()
+            print("Este punto es: ",instruccion_operando)    
+            if instruccion.upper() in self.dict_tabop: # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
+            # Se encontró una instruccion valida 
                 if linea != "":
                     pass
-                    # print('La linea "{}" es una linea valida!'.format(linea))
-                    print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
-            elif instruccion_operando in self.tabop:   # La instruccion no está en el primer espacio de instruccion[0]
-                try:
-                    # VALIDAR DATA SEGMENT
-                    # CREAR AUTOMATAS PARA VALIDAR OPERADORES Y TIPOS DE DATOS
-                    # MODIFICAR LAS EXCEPCIONES (HACER ESPECIFICAS) PARA EVITAR OCULTAR OTROS FALLOS
-                    # AGREGAR FUNCIONALIDAD A LAS DEMAS PAGINAS O ELIMINARLAS (ERROES | ANALIZAR)
-                    if (instruccion_ope[1].upper() in self.tabop):  # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
-                        if (":" in instruccion_ope[0]):             # Hay una etiqueta al inicio de la linea
-                            instruccion = instruccion_ope[1]
-                            operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
-                            operandos = operandos[0].split(",")
-                            comentario = componentes[1].strip() if len(componentes) > 1 else ""
-                            # print('La linea "{}" es una linea valida!'.format(linea))
-                            # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
-                        elif instruccion_ope[1].upper() == "PROC":
-                            # Inicia un procedimiento ------------------------------------------------------------------------------------------------------------
-                            if pila_llamadas_procedimientos[-1] == '#':     # Si la pila esta vacía, se puede apilar
-                                # print('La linea "{}" es una linea valida!'.format(linea))
-                                pila_llamadas_procedimientos.append(contador_linea)
-                                pila_llamadas_procedimientos.append(instruccion_ope[0])
-                            else:
-                                print('Error en el procedimiento: ', instruccion_ope[0])
-                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
-                        elif instruccion_ope[1].upper() == "ENDP":  
-                            # Termina un procedimiento -----------------------------------------------------------------------------------------------------------
-                            if pila_llamadas_procedimientos[-1] != '#':     # Si la pila no esta vacía, se puede desapilar
-                                sub_rutina = pila_llamadas_procedimientos.pop()
-                                linea_proc = pila_llamadas_procedimientos.pop()
-                            if (sub_rutina == instruccion_ope[0]):
-                                pass
-                                # print('La linea "{}" es una linea valida!'.format(linea))            
-                            # ====================================================================================================================================
-                            elif linea_proc != 0:
-                                print('Error en el procedimiento: ', instruccion_ope[0])
-                                lista_erroes.append(linea_proc)
-                                lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
-                                pila_llamadas_procedimientos = ['#']    # Se reinicializa la pila
-                            sub_rutina = ""
-                            linea_proc = 0
+                    # print('La linea "{}" es una linea valida!'.format(linea)) VALIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
+            elif instruccion_operando in self.dict_tabop:   # La instruccion no está en el primer espacio de instruccion[0]
+                
+            # Se encontró una instruccion valida  en el segundo espacio (despues de otro elemento)
+            
+                # AGREGAR FUNCIONALIDAD A LAS DEMAS PAGINAS O ELIMINARLAS (ERROES | ANALIZAR)
+                
+                if (instruccion_ope[1].upper() in self.dict_tabop):  # INSTRUCCION VALIDA (VERIFICAR OPERADORES)
+                    print(instruccion_ope[1].upper())
+                    if (":" in instruccion_ope[0]):             # Hay una etiqueta al inicio de la linea
+                        instruccion = instruccion_ope[1]
+                        operandos = instruccion_ope[2:] if len(instruccion_ope) > 1 else []
+                        operandos = operandos[0].split(",")
+                        comentario = componentes[1].strip() if len(componentes) > 1 else ""
+                        # print('La linea "{}" es una linea valida!'.format(linea)) VALIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        # print('La instruccion es: "{}", el o los operadores son: "{}", y el comentario es: "{}"'.format(instruccion, operandos, comentario))
+                    elif instruccion_ope[1].upper() == "PROC":
+                        # Inicia un procedimiento ------------------------------------------------------------------------------------------------------------
+                        if pila_llamadas_procedimientos[-1] == '#':     # Si la pila esta vacía, se puede apilar
+                            print('La linea "{}" es una linea valida!'.format(linea))  # VALIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                            pila_llamadas_procedimientos.append(contador_linea)
+                            pila_llamadas_procedimientos.append(instruccion_ope[0])
                         else:
-                            # La linea puede tener una instruccion pero no hay una etiqueta válida
-                            # print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
+                            print('Error en el procedimiento: ', instruccion_ope[0])
                             lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
-                except:
-                    pass
+                    elif instruccion_ope[1].upper() == "ENDP":  
+                        # Termina un procedimiento -----------------------------------------------------------------------------------------------------------
+                        if pila_llamadas_procedimientos[-1] != '#':     # Si la pila no esta vacía, se puede desapilar
+                            sub_rutina = pila_llamadas_procedimientos.pop()
+                            linea_proc = pila_llamadas_procedimientos.pop()
+                        if (sub_rutina == instruccion_ope[0]):
+                            # pass
+                            print('La linea "{}" es una linea valida!'.format(linea))            #  VALIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        # ====================================================================================================================================
+                        elif linea_proc != 0:
+                            print('Error en el procedimiento: ', instruccion_ope[0])
+                            lista_erroes.append(linea_proc)
+                            lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                            pila_llamadas_procedimientos = ['#']    # Se reinicializa la pila
+                        sub_rutina = ""
+                        linea_proc = 0
+                    else:
+                        # La linea puede tener una instruccion pero no hay una etiqueta válida
+                        print('"{}" no se reconoce (se espera ":" al final de una etiqueta)'.format(instruccion_ope[0]))
+                        lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
+                
             elif (linea and linea_vacia != "") and (':' not in instruccion) and ("DEFINE" not in instruccion.upper()):
                 linea_comentario = linea_vacia.split()  # No se encontró una instruccion valida.
                 if ";" not in linea_comentario[0]:  # No se encontró ni un comentario, ni una linea en blanco ni una definicion ni una etiqueta.
-                    # print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
+                    print(linea, " Sin instruccion")        # INSTRUCCION INVALIDA (RECHAZADA)
                     lista_erroes.append(contador_linea)     # Se agrega la linea actual a la lista de errores
         return lista_erroes        
         
