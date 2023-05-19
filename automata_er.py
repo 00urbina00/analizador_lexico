@@ -141,15 +141,15 @@ transiciones_ope = [
     ('q1', r'[xhlXHL]',                         'q2'), # Fin de registros
     ('q1', r'[a-gA-Gi-kI-Km-wM-Wy-zY-Z0-9]',    'q3'), # Ingreso de variable
     ('q2', r'[a-zA-Z0-9_]',                      'q3'), # Ingreso de variable
-    ('q3', r'[a-zA-Z0-9]',                      'q3') # Aceptacion de variables
+    ('q3', r'[a-zA-Z0-9_]',                      'q3') # Aceptacion de variables
 ]
-"""
+""" 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
 
 
 automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
 
-if automata_num.acepta_cadena("03h"):
+if automata_ope.acepta_cadena("name_new"):
     print("Se acepta")
 else:
     print("Se rechaza")
