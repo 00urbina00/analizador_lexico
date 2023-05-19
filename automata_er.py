@@ -124,6 +124,10 @@ transiciones_num = [
     ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
     ('q2', r'[0-9a-fA-F]',      'q2') # Hexadecimales del tipo 0x
 ]
+
+
+
+
 # ---------------------------------------------------------------------------------------------------------------
 # Parametros de automata_ope
 estados_ope = {'q0', 'q1', 'q2', 'q3'}
@@ -139,3 +143,14 @@ transiciones_ope = [
     ('q2', r'[a-zA-Z0-9]',                      'q3'), # Ingreso de variable
     ('q3', r'[a-zA-Z0-9]',                      'q3') # Aceptacion de variables
 ]
+
+automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
+
+
+automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
+
+if automata_num.acepta_cadena("03h"):
+    print("Se acepta")
+else:
+    print("Se rechaza")
+    
