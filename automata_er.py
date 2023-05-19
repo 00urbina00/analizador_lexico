@@ -148,9 +148,9 @@ for cadena in cadenas:
 
 
       
-estados_ope = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
-estado_inicial_ope = 'q0'
-estados_aceptacion_ope = {'q0','q2', 'q3', 'q6', 'q8', 'q5'}
+estados_num = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5' ,'q6', 'q7', 'q8'}
+estado_inicial_num = 'q0'
+estados_aceptacion_num = {'q0', 'q1', 'q2', 'q4', 'q6', 'q7', 'q8'}
 
 # Definir las transiciones del autómata de operadores
 # El formato en que se reciben operadores es en lista: 
@@ -159,33 +159,67 @@ La instruccion es: "mov", el o los operadores son: "['[error]', 'ax']", y el com
 La instruccion es: "pop", el o los operadores son: "['ax']", y el comentario es: ""
 
 """
-transiciones_ope = [
+transiciones_num = [
     # Transiciones para valores vacíos o espacios
     ('q0', r'^$',               'q0'), # Cadena vacía
-    ('q0', r'[a-zA-Z]',         'q1'), # Registros (letras de 'a' a 'd' seguidas de 'x', 'h' o 'l')
-    ('q0', r'[2-9]',            'q5'), # Reconoce numeros enteros
-    ('q0', r'0',                'q4'), #Reconoce numeros posibles hexadecimales
-    ('q0', r'1',                'q7'),
-    ('q1', r'[^xhlXHL]',        'q3'), #Reconoce varibles de registro
-    ('q1', r'[xhlXHL]',         'q2'), #Reconoce varibales
-    ('q2', r'[a-zA-Z_0-9]',     'q3'), #Parte reconocedor de variables
-    ('q3', r'[0-9a-zA-Z\t]',    'q3'), #Reconocedor de varibales, por si termina con espacios indeterminados
-    ('q4', r'[xXa-fA-F]',       'q5'), #Si pasa por aqui son hexa
-    ('q4', r'[10]',             'q7'), #Parte binaria
-    ('q5', r'[a-fA-F0-9]',      'q6'), #Pueden seguir siendo normales si no se pasa por q4 o pueden comenzar a ser hexa
-    ('q6', r'[0-9a-fA-FhH]',    'q6'),
-    ('q7', r'[10]',             'q7'),
-    ('q7', r'[bB]',             'q8')
+    ('q0', r'0',                'q4'), # Puede entrar 0x, enteros o letras
+    ('q0', r'1',                'q5'), # Entra a los numeros binarios
+    ('q0', r'[2-9]',            'q6'), # Reconoce numeros enteros
+    ('q5', r'[01]',             'q5'), # Ingresos de numeros binarios
+    ('q5', r'[bB]',             'q8'), # Sale de numeros binarios a estado final
+    ('q5', r'[a-fA-F]',         'q3'), # Sale de binarios para ir a hexadecimales
+    ('q5', r'[2-9]',            'q6'), # Sale de binarios para ir a enteros
+    ('q6', r'[0-9]',            'q6'), # Recibe enteros
+    ('q6', r'[a-fA-F]',         'q3'), # Sale de enteros a recibir hexadecimal
+    ('q3', r'[0-9a-fA-F]',      'q3'), # Se mantiene recibiendo numeros hexadecimales
+    ('q3', r'hH',               'q7'), # Salida para aceptacion de hexadecimales
+    ('q4', r'[2-9]',            'q6'), # Recibe numeros decimales
+    ('q4', r'[01]',             'q5'), # Recibe numeros binarios
+    ('q4', r'xX',               'q1'), # Recibe hexa comenzando con 0x
+    ('q4', r'[0-9]',            'q2'), # Recibe enteros comenzando 0
+    ('q4', r'[A-Fa-f]',         'q3'), # Recibe hexadecimales 0 terminando con h
+    ('q1', r'[0-9a-fA-F]',      'q2'), # Recibe hexas 0x
+    ('q2', r'[0-9a-fA-F]',      'q2'), # Hexadecimales del tipo 0x
+]
+
+automata_num = Automata(estados_num, estado_inicial_num, estados_aceptacion_num, transiciones_num)
+
+bloque_texto_num = ['0x1','100aah', '20', '20b']
+
+cadenas_num = bloque_texto_num
+for cadena_n in cadenas_num:
+    print("La cadena es: ", cadena_n)
+    if automata_num.acepta_cadena(cadena_n):
+        print("-------------------------------------")
+        print("La cadena es válida para el autómata.")
+        print("-------------------------------------")
+    else:
+        print("-------------------------------------")
+        print("La cadena no es válida para el autómata.")
+        print("-------------------------------------")
+
+estados_ope = {'q0', 'q1', 'q2', 'q3'}
+estado_inicial_ope = 'q0'
+estados_aceptacion_ope = {'q0','q2', 'q3'}
+
+transiciones_ope = [
+    # Transiciones para valores vacíos o espacios
+    ('q0', r'^$',                               'q0'), # Cadena vacía
+    ('q0', r'[a-dA-D]',                         'q1'), # Posible ingreso de registro
+    ('q0', r'[e-zE-Z_]',                        'q3'), # Entra variable
+    ('q1', r'[xhlXHL]',                         'q2'), # Fin de registros
+    ('q1', r'[a-gA-Gi-kI-Km-wM-Wy-zY-Z0-9]',    'q3'), # Ingreso de variable
+    ('q2', r'[a-zA-Z0-9]',                      'q3'), # Ingreso de variable
+    ('q3', r'[a-zA-Z0-9]',                      'q3') # Aceptacion de variables
 ]
 
 automata_ope = Automata(estados_ope, estado_inicial_ope, estados_aceptacion_ope, transiciones_ope)
-
-bloque_texto_ope = ['0x', '', '0xAh', '[]']
+bloque_texto_ope = ['0x1','100ah', '20', '20b']
 
 cadenas_ope = bloque_texto_ope
-for cadena in cadenas_ope:
-    print("La cadena es: ", cadena, "| Termina")
-    if automata_ope.acepta_cadena(cadena):
+for cadena_o in cadenas_ope:
+    print("La cadena es: ", cadena_o)
+    if automata_num.acepta_cadena(cadena_o):
         print("-------------------------------------")
         print("La cadena es válida para el autómata.")
         print("-------------------------------------")
